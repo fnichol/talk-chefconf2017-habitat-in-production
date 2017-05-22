@@ -1,0 +1,94 @@
+/**
+ * A simple theme for reveal.js presentations, similar
+ * to the default theme. The accent color is darkblue.
+ *
+ * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
+ * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+
+@font-face {
+  font-family: 'Titillium Web';
+  src: url("/fonts/titilliumweb-regular-webfont.eot");
+  src: url("/fonts/titilliumweb-regular-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/titilliumweb-regular-webfont.woff2") format("woff2"), url("/fonts/titilliumweb-regular-webfont.woff") format("woff"), url("/fonts/titilliumweb-regular-webfont.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium Web';
+  src: url("/fonts/titilliumweb-italic-webfont.eot");
+  src: url("/fonts/titilliumweb-italic-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/titilliumweb-italic-webfont.woff2") format("woff2"), url("/fonts/titilliumweb-italic-webfont.woff") format("woff"), url("/fonts/titilliumweb-italic-webfont.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Titillium Web';
+  src: url("/fonts/titilliumweb-bold-webfont.eot");
+  src: url("/fonts/titilliumweb-bold-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/titilliumweb-bold-webfont.woff2") format("woff2"), url("/fonts/titilliumweb-bold-webfont.woff") format("woff"), url("/fonts/titilliumweb-bold-webfont.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url("/fonts/montserratalternates-regular-webfont.eot");
+  src: url("/fonts/montserratalternates-regular-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/montserratalternates-regular-webfont.woff2") format("woff2"), url("/fonts/montserratalternates-regular-webfont.woff") format("woff"), url("/fonts/montserratalternates-regular-webfont.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Titillium Web', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$mainColor: #000;
+$headingFont: 'Montserrat Alternates', 'Verdana', 'Geneva', sans-serif;
+$headingColor: #273C4C;
+$headingTextShadow: none;
+$headingTextTransform: none;
+//$backgroundColor: #273C4C;
+$backgroundColor: #fff;
+$linkColor: #00008B;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: rgba(0, 0, 0, 0.99);
+
+section.has-dark-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+  }
+}
+
+html.fade-bg {
+  .slide-background {
+    opacity: 0.80 !important;
+  }
+  h1, h2, h3, h4, h5, h6, * {
+    color: #fff;
+    text-shadow: 2px 2px 4px #86B199;
+  }
+}
+
+.dim {
+  opacity: 0.25 !important;
+}
+
+section.graphic {
+  h2 {
+    margin: -3.5em;
+  }
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------

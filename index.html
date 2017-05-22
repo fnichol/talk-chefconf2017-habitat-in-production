@@ -1,49 +1,439 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/chefconf-hab.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-background-color="#fff" data-background-image="img/meadow--dqX6bb.jpg" data-state="fade-bg">
+          <h1>Habitat in Production</h1>
+          <h2>Fletcher Nichol</h2>
+          <table>
+            <tr>
+              <td>ChefConf 2017</td>
+              <td>May 23, 2017</td>
+              <td>Austin, USA</td>
+            </tr>
+          </table>
+        </section>
+        <section>
+          <h2>Habitat?</h2>
+            <ul>
+              <li class="fragment">is a runtime system for your apps or other services</li>
+              <li class="fragment">provides realtime service configuration</li>
+              <li class="fragment">is a reactive system</li>
+              <li class="fragment">packages software with a deterministic build system</li>
+              <li class="fragment">distributed build service</li>
+              <li class="fragment">loves your apps</li>
+            </ul>
+        </section>
+        <section data-background-color="#f00">
+          <h2>Alert!</h2>
+        </section>
+        <section data-background-color="#fff" data-background-image="img/gif/i-know-this.gif" data-background-size="85%">
+        </section>
+        <section data-background-color="#fff" data-background-image="img/gif/cat-shock.gif" data-background-size="45%">
+        </section>
+        <section data-background-color="#fff" data-background-image="img/gif/hack-cat.gif" data-background-size="65%">
+          <h2 style="color: #fff;">Habitat Zone!</h2>
+          <h3 style="color: #fff;">Level 4, behind registration</h3>
+        </section>
+        <section data-background-color="#fff">
+          <h2>Concepts</h2>
+          <ol>
+            <li class="fragment">Topologies</li>
+            <li class="fragment">Service Bindings</li>
+            <li class="fragment">Update Strategies</li>
+            <li class="fragment">Release Channels</li>
+            <li class="fragment">Keys</li>
+            <li class="fragment">Service Configuration</li>
+          </ol>
+        </section>
+        <section data-background-color="#fff">
+          <h2>Topologies</h2>
+        </section>
+            <section data-background-color="#273C4C">
+              <h2>Topology</h2>
+              <h3>1. Standalone</h3>
+              <pre><code data-trim>
+                hab svc load abahab/webacus --topology standalone
+              </code></pre>
+              <pre class="fragment"><code data-trim>
+                hab svc load abahab/webacus
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Topology</h2>
+              <h3>2. Leader</h3>
+              <pre><code data-trim>
+                hab svc load abahab/webacus --topology leader
+              </code></pre>
+            </section>
+            <section class="graphic" data-background-color="#273C4C" data-background-image="img/gfx/Topology-1.svg" data-background-size="95%">
+            </section>
+            <section class="graphic" data-background-color="#273C4C" data-background-image="img/gfx/Topology-2.svg" data-background-size="95%">
+            </section>
+            <section class="graphic" data-background-color="#273C4C" data-background-image="img/gfx/Topology-3.svg" data-background-size="95%">
+            </section>
+            <section class="graphic" data-background-color="#273C4C" data-background-image="img/gfx/Topology-4.svg" data-background-size="95%">
+            </section>
+            <section class="graphic" data-background-color="#273C4C" data-background-image="img/gfx/Topology-5.svg" data-background-size="95%">
+            </section>
+        <section>
+          <h2>Service Binding</h2>
+          <aside class="notes">
+            <em>TODO fin: Will Jamie show how to build with binds, consume, etc.? If so, I'm only going to use them.</em>
+          </aside>
+        </section>
+            <section data-background-color="#273C4C">
+              <h2>Bindings</h2>
+              <h3>1. Required</h3>
+              <pre><code data-trim>
+                hab svc load abahab/webacus --bind database:postgresql.default
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Bindings</h2>
+              <h3>2. Optional</h3>
+              <pre><code data-trim>
+                hab svc load abahab/webacus --bind database:postgresql.default
+              </code></pre>
+              <pre class="fragment"><code data-trim>
+                hab svc load abahab/webacus
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/ServiceBinding.svg" data-background-size="85%">
+            </section>
+        <section>
+          <h2>Update Strategies</h2>
+        </section>
+            <section data-background-color="#273C4C">
+              <h2>Strategy</h2>
+              <h3>1. None</h3>
+              <pre><code data-trim>
+                hab svc load abahab/webacus --strategy none
+              </code></pre>
+              <pre class="fragment"><code data-trim>
+                hab svc load abahab/webacus
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Strategy</h2>
+              <h3>2. AtOnce</h3>
+              <pre><code data-trim>
+                hab svc load abahab/webacus --strategy at-once
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Strategy</h2>
+              <h3>3. Rolling</h3>
+              <pre><code data-trim>
+                hab svc load abahab/webacus --strategy rolling
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/RollingUpdates-1.svg" data-background-size="95%">
+            </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/RollingUpdates-2.svg" data-background-size="95%">
+            </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/RollingUpdates-3.svg" data-background-size="95%">
+            </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/RollingUpdates-4.svg" data-background-size="95%">
+            </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/RollingUpdates-5.svg" data-background-size="95%">
+            </section>
+        <section>
+          <h2>Release Channels</h2>
+        </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/Channels.svg" data-background-size="75%">
+            </section>
+        <section>
+          <h2>Keys</h2>
+        </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/Keys.svg" data-background-size="95%">
+            </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/Keys-OriginKey.svg" data-background-size="95%">
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Key</h2>
+              <h3>1. Origin</h3>
+              <pre><code data-trim>
+                hab origin key generate abahab
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+                hab pkg build -k abahab .
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/Keys-RingKey.svg" data-background-size="95%">
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Key</h2>
+              <h3>2. Ring</h3>
+              <pre><code data-trim>
+                hab ring key generate beyonce
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+                hab svc load abahab/webacus
+                hab sup run --ring beyonce
+
+                hab config apply --ring beyonce webacus.default $ver $config.toml
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/Keys-ServiceKey.svg" data-background-size="95%">
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Key</h2>
+              <h3>3. Service</h3>
+              <pre><code data-trim>
+                hab svc key generate webacus.default prod
+
+                hab svc load abahab/webacus
+                hab sup run --org prod
+
+                hab config apply \
+                  webacus.default@prod \
+                  $ver \
+                  $config.toml
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Key</h2>
+              <h3>3. Service (With Ring)</h3>
+              <pre><code data-trim>
+                hab ring key generate beyonce
+                hab svc key generate webacus.default prod
+
+                hab svc load abahab/webacus
+                hab sup run --org prod --ring beyonce
+
+                hab config apply \
+                  --ring beyonce \
+                  webacus.default@prod \
+                  $ver \
+                  $config.toml
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C" data-background-image="img/gfx/Keys-UserKey.svg" data-background-size="95%">
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Key</h2>
+              <h3>4. User (Future)</h3>
+              <pre><code data-trim>
+                hab user key generate fnichol
+
+                hab svc key generate webacus.default prod
+                hab svc load abahab/webacus
+                hab sup run --org prod
+
+                # encrypt config with fnichol key for webacus.default@prod
+
+                hab config apply \
+                  webacus.default@prod \
+                  $ver \
+                  $encrypted_config.toml
+              </code></pre>
+            </section>
+        <section>
+          <h2>Service Configuration</h2>
+        </section>
+            <section data-background-color="#273C4C">
+              <h2>Configuration</h2>
+              <h3>1. Environment</h3>
+              <pre><code data-trim>
+                HAB_WEBACUS='maths_api = "http://maths.api"
+
+                [app]
+                port = 8080
+                '
+                export HAB_WEBACUS
+
+                hab svc load abahab/webacus
+                hab sup run
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Configuration</h2>
+              <h3>2. File</h3>
+              <pre><code data-trim>
+                mkdir -p /hab/svc/webacus
+
+                cat &lt;&lt;__EOF__ &gt; /hab/svc/webacus/user.toml
+                maths_api = "http://maths.api"
+
+                [app]
+                port = 8080
+                __EOF__
+
+                hab svc load abahab/webacus
+                hab sup run
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Configuration</h2>
+              <h3>3. Config Apply (1)</h3>
+              <pre><code data-trim>
+                cat &lt;&lt;__EOF__ &gt; /tmp/webacus.toml
+                maths_api = "http://maths.api"
+
+                [app]
+                port = 8080
+                __EOF__
+
+                hab svc load abahab/webacus
+                hab sup run
+
+                hab config apply webacus.default $ver /tmp/webacus.toml
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Configuration</h2>
+              <h3>3. Config Apply (2)</h3>
+              <pre><code data-trim>
+                hab svc load abahab/webacus
+                hab sup run
+
+                cat &lt;&lt;__EOF__ | hab config apply webacus.default $ver
+                maths_api = "http://maths.api"
+
+                [app]
+                port = 8080
+                __EOF__
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Configuration</h2>
+              <h3>3. Config Apply (Aside)</h3>
+              <pre><code data-trim>
+                ver=$(date +'%s')
+
+                hab config apply webacus.default $ver /tmp/webacus.toml
+              </code></pre>
+            </section>
+            <section>
+              <h2>Versioned Configuration Changes</h2>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Setup</h2>
+              <pre><code data-trim>
+                git init habitat-config-ring-beyonce
+                cd init
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Service Group Config</h2>
+              <pre><code data-trim>
+                cat &lt;&lt;__EOF__ &gt; webacus.default.toml
+                maths_api = "http://maths.api"
+
+                [app]
+                port = 8080
+                __EOF__
+
+                git add webacus.default.toml
+                git commit -m "Add webacus.default.toml"
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>Seed Ring</h2>
+              <h3>(Pseudo Code)</h3>
+              <pre><code data-trim>
+                find . -name '*.toml' | while read -r config_toml; do
+                  service_group="${config_toml%.toml}"
+
+                  hab apply \
+                    --ring beyonce \
+                    "$service_group" \
+                    $(date +'%s') \
+                    "$config_toml"
+                done
+              </code></pre>
+            </section>
+            <section data-background-color="#273C4C">
+              <h2>VCS Post-Merge Hook</h2>
+              <h3>(Pseudo Code)</h3>
+              <pre><code data-trim>
+                git diff --name-only "$GIT_SHAS" | while read -r config_toml; do
+                  service_group="${config_toml%.toml}"
+
+                  hab apply \
+                    --ring beyonce \
+                    "$service_group" \
+                    $(date +'%s') \
+                    "$config_toml"
+                done
+              </code></pre>
+            </section>
+        <section data-background-color="#fff" data-background-image="img/gif/mr-bean.gif" data-background-size="30%">
+          <h2 style="margin-top: -3em">We Did It!</h2>
+        </section>
+        <section data-background-image="img/habitat-zone.jpg">
+          <h2 style="margin-top: 6em; color: #fff">Habitat Zone: Level 4</h2>
+        </section>
+        <section data-background-color="#fff" data-background-image="img/gfx/Habitat-Hugs.svg" data-background-size="55%">
+        </section>
+        <section class="title" data-background-image="img/join-habislack.png" data-state="fade-bg" data-background-size="85%">
+          <h2><a href="http://slack.habitat.sh/" style="color: #000;">http://slack.habitat.sh</a></h2>
+        </section>
+        <section class="title" data-background-image="img/meadow--dqX6bb.jpg" data-state="fade-bg">
+          <h1>Thank you!</h1>
+          <table style="background-color: #fff; opacity: 0.85;">
+            <tr>
+              <td style="color: #000;">Fletcher Nichol</td>
+              <td style="color: #000;"><a href="https://twitter.com/fnichol">@fnichol</a></td>
+              <td style="color: #000;"><a href="https://www.habitat.sh">habitat.sh</a></td>
+            </tr>
+            <tr style="font-size: 0.8em">
+              <td colspan="3">
+                <ul>
+                  <li><a href="https://flic.kr/p/dqX6bb">https://flic.kr/p/dqX6bb</a></li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+          <aside class="notes">
+            <h1>35:00</h1>
+          </aside>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        history: true,
+        controls: false,
+        progress: false,
+        transition: 'none',
+        // transitionSpeed: 'fast',
+
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
 </html>
