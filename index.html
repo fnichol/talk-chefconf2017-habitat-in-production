@@ -74,17 +74,17 @@
             <section data-background-color="#273C4C">
               <h2>Topology</h2>
               <h3>1. Standalone</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab svc load abahab/webacus --topology standalone
               </code></pre>
-              <pre class="fragment"><code data-trim>
+              <pre class="fragment"><code data-trim class="sh">
                 hab svc load abahab/webacus
               </code></pre>
             </section>
             <section data-background-color="#273C4C">
               <h2>Topology</h2>
               <h3>2. Leader</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab svc load abahab/webacus --topology leader
               </code></pre>
             </section>
@@ -107,17 +107,17 @@
             <section data-background-color="#273C4C">
               <h2>Bindings</h2>
               <h3>1. Required</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab svc load abahab/webacus --bind database:postgresql.default
               </code></pre>
             </section>
             <section data-background-color="#273C4C">
               <h2>Bindings</h2>
               <h3>2. Optional</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab svc load abahab/webacus --bind database:postgresql.default
               </code></pre>
-              <pre class="fragment"><code data-trim>
+              <pre class="fragment"><code data-trim class="sh">
                 hab svc load abahab/webacus
               </code></pre>
             </section>
@@ -129,24 +129,24 @@
             <section data-background-color="#273C4C">
               <h2>Strategy</h2>
               <h3>1. None</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab svc load abahab/webacus --strategy none
               </code></pre>
-              <pre class="fragment"><code data-trim>
+              <pre class="fragment"><code data-trim class="sh">
                 hab svc load abahab/webacus
               </code></pre>
             </section>
             <section data-background-color="#273C4C">
               <h2>Strategy</h2>
               <h3>2. AtOnce</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab svc load abahab/webacus --strategy at-once
               </code></pre>
             </section>
             <section data-background-color="#273C4C">
               <h2>Strategy</h2>
               <h3>3. Rolling</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab svc load abahab/webacus --strategy rolling
               </code></pre>
             </section>
@@ -175,7 +175,7 @@
             <section data-background-color="#273C4C">
               <h2>Key</h2>
               <h3>1. Origin</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab origin key generate abahab
 
                 hab pkg build -k abahab .
@@ -186,7 +186,7 @@
             <section data-background-color="#273C4C">
               <h2>Key</h2>
               <h3>2. Ring</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab ring key generate beyonce
 
                 hab svc load abahab/webacus
@@ -200,7 +200,7 @@
             <section data-background-color="#273C4C">
               <h2>Key</h2>
               <h3>3. Service</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab svc key generate webacus.default prod
 
                 hab svc load abahab/webacus
@@ -215,7 +215,7 @@
             <section data-background-color="#273C4C">
               <h2>Key</h2>
               <h3>3. Service (With Ring)</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab ring key generate beyonce
                 hab svc key generate webacus.default prod
 
@@ -234,7 +234,7 @@
             <section data-background-color="#273C4C">
               <h2>Key</h2>
               <h3>4. User (Future)</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab user key generate fnichol
 
                 hab svc key generate webacus.default prod
@@ -255,7 +255,7 @@
             <section data-background-color="#273C4C">
               <h2>Configuration</h2>
               <h3>1. Environment</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 HAB_WEBACUS='maths_api = "http://maths.api"
 
                 [app]
@@ -270,7 +270,7 @@
             <section data-background-color="#273C4C">
               <h2>Configuration</h2>
               <h3>2. File</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 mkdir -p /hab/svc/webacus
 
                 cat &lt;&lt;__EOF__ &gt; /hab/svc/webacus/user.toml
@@ -287,7 +287,7 @@
             <section data-background-color="#273C4C">
               <h2>Configuration</h2>
               <h3>3. Config Apply (1)</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 cat &lt;&lt;__EOF__ &gt; /tmp/webacus.toml
                 maths_api = "http://maths.api"
 
@@ -304,7 +304,7 @@
             <section data-background-color="#273C4C">
               <h2>Configuration</h2>
               <h3>3. Config Apply (2)</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 hab svc load abahab/webacus
                 hab sup run
 
@@ -319,7 +319,7 @@
             <section data-background-color="#273C4C">
               <h2>Configuration</h2>
               <h3>3. Config Apply (Aside)</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 ver=$(date +'%s')
 
                 hab config apply webacus.default $ver /tmp/webacus.toml
@@ -330,14 +330,14 @@
             </section>
             <section data-background-color="#273C4C">
               <h2>Setup</h2>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 git init habitat-config-ring-beyonce
-                cd init
+                cd habitat-config-ring-beyonce
               </code></pre>
             </section>
             <section data-background-color="#273C4C">
               <h2>Service Group Config</h2>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 cat &lt;&lt;__EOF__ &gt; webacus.default.toml
                 maths_api = "http://maths.api"
 
@@ -352,7 +352,7 @@
             <section data-background-color="#273C4C">
               <h2>Seed Ring</h2>
               <h3>(Pseudo Code)</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 find . -name '*.toml' | while read -r config_toml; do
                   service_group="${config_toml%.toml}"
 
@@ -367,7 +367,7 @@
             <section data-background-color="#273C4C">
               <h2>VCS Post-Merge Hook</h2>
               <h3>(Pseudo Code)</h3>
-              <pre><code data-trim>
+              <pre><code data-trim class="sh">
                 git diff --name-only "$GIT_SHAS" | while read -r config_toml; do
                   service_group="${config_toml%.toml}"
 
@@ -388,7 +388,7 @@
         <section data-background-color="#fff" data-background-image="img/gfx/Habitat-Hugs.svg" data-background-size="55%">
         </section>
         <section class="title" data-background-image="img/join-habislack.png" data-state="fade-bg" data-background-size="85%">
-          <h2><a href="http://slack.habitat.sh/" style="color: #000;">http://slack.habitat.sh</a></h2>
+          <h2 style="font-size: 2em;"><a href="http://slack.habitat.sh/" style="color: #000;">http://slack.habitat.sh</a></h2>
         </section>
         <section class="title" data-background-image="img/meadow--dqX6bb.jpg" data-state="fade-bg">
           <h1>Thank you!</h1>
